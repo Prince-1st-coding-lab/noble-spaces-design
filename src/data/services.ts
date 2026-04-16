@@ -23,6 +23,7 @@ export interface Service {
   image: string;
   features: string[];
   process: { step: string; description: string }[];
+  availability: "in-stock" | "custom-made";
 }
 
 export const services: Service[] = [
@@ -41,6 +42,7 @@ export const services: Service[] = [
       { step: "Design Refinement", description: "We refine the design based on your feedback." },
       { step: "Implementation", description: "Our team brings the design to life with precision." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "furniture-manufacturing",
@@ -57,6 +59,7 @@ export const services: Service[] = [
       { step: "Crafting", description: "Our artisans handcraft your furniture with meticulous care." },
       { step: "Delivery & Setup", description: "Professional delivery and placement in your space." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "sofa-design",
@@ -73,6 +76,7 @@ export const services: Service[] = [
       { step: "Manufacturing", description: "Expert craftsmen build your sofa to perfection." },
       { step: "Quality Check & Delivery", description: "Thorough inspection before delivery to your home." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "office-furniture",
@@ -89,6 +93,7 @@ export const services: Service[] = [
       { step: "Production", description: "Manufacturing with commercial-grade materials." },
       { step: "Installation", description: "Professional setup with minimal disruption." },
     ],
+    availability: "in-stock",
   },
   {
     slug: "wall-partitioning",
@@ -105,6 +110,7 @@ export const services: Service[] = [
       { step: "Fabrication", description: "Custom manufacturing to exact measurements." },
       { step: "Installation", description: "Professional fitting with clean finishing." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "kitchen-design",
@@ -121,6 +127,7 @@ export const services: Service[] = [
       { step: "Material Selection", description: "Choose cabinets, countertops, and hardware finishes." },
       { step: "Installation", description: "Complete kitchen fitting by our expert team." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "ceiling-installation",
@@ -137,6 +144,7 @@ export const services: Service[] = [
       { step: "Preparation", description: "Structural assessment and surface preparation." },
       { step: "Installation", description: "Expert fitting with integrated lighting." },
     ],
+    availability: "in-stock",
   },
   {
     slug: "furniture-repair",
@@ -153,6 +161,7 @@ export const services: Service[] = [
       { step: "Restoration", description: "Careful repair and renovation by skilled artisans." },
       { step: "Return", description: "Delivered back looking better than ever." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "curtains-carpets",
@@ -169,6 +178,7 @@ export const services: Service[] = [
       { step: "Custom Making", description: "Tailored to your exact specifications." },
       { step: "Installation", description: "Professional fitting and dressing." },
     ],
+    availability: "in-stock",
   },
   {
     slug: "door-manufacturing",
@@ -185,6 +195,7 @@ export const services: Service[] = [
       { step: "Manufacturing", description: "Handcrafted to your exact specifications." },
       { step: "Installation", description: "Professional fitting with quality hardware." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "soundproof-installation",
@@ -201,6 +212,7 @@ export const services: Service[] = [
       { step: "Material Sourcing", description: "Professional-grade acoustic materials." },
       { step: "Installation", description: "Expert installation for maximum effectiveness." },
     ],
+    availability: "custom-made",
   },
   {
     slug: "maintenance-services",
@@ -217,6 +229,7 @@ export const services: Service[] = [
       { step: "Service", description: "Professional maintenance and care." },
       { step: "Report", description: "Detailed report with recommendations." },
     ],
+    availability: "in-stock",
   },
 ];
 
