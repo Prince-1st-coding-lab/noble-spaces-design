@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import WhatsAppButton from "./WhatsAppButton";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const { pathname } = useLocation();
@@ -12,6 +13,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <main className="flex-1 pt-20">{children}</main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
