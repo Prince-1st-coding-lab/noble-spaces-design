@@ -160,7 +160,7 @@ export const services: Service[] = [
     shortTitle: "Curtains & Carpets",
     description: "Premium window treatments and floor coverings to complete your interior design.",
     longDescription: "The finishing touches make all the difference. Our curtains and carpets installation service offers a curated selection of premium fabrics, patterns, and textures. From motorized curtain systems to hand-knotted area rugs, we help you select and install the perfect soft furnishings for your space.",
-    icon: Curtains,
+    icon: Blinds,
     image: curtainsImg,
     features: ["Custom Curtains", "Motorized Systems", "Carpet Fitting", "Rug Selection", "Blackout Options", "Sheer & Layered"],
     process: [
