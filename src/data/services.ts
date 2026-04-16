@@ -1,4 +1,4 @@
-import { Paintbrush, Sofa, Armchair, Building2, LayoutGrid, ChefHat, Lamp, Wrench, Curtains, DoorOpen, Volume2, Settings } from "lucide-react";
+import { Paintbrush, Sofa, Armchair, Building2, LayoutGrid, ChefHat, Lamp, Wrench, Blinds, DoorOpen, Volume2, Settings } from "lucide-react";
 
 import interiorImg from "@/assets/interior-design.jpg";
 import furnitureImg from "@/assets/furniture.jpg";
