@@ -1,16 +1,22 @@
+import { useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowRight, CheckCircle } from "lucide-react";
+import { ArrowRight, CheckCircle, Package, Wrench as WrenchIcon, CalendarDays } from "lucide-react";
 import { motion } from "framer-motion";
 import { getServiceBySlug, services } from "@/data/services";
 import AnimatedSection from "@/components/AnimatedSection";
+import BookingModal from "@/components/BookingModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const ServicePage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug || "");
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const { t } = useLanguage();
 
   if (!service) return <Navigate to="/services/interior-design" replace />;
 
   const otherServices = services.filter(s => s.slug !== service.slug).slice(0, 4);
+  const isInStock = service.availability === "in-stock";
 
   return (
     <div>
@@ -20,23 +26,38 @@ const ServicePage = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
         <div className="relative container mx-auto px-4 pb-12">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">Our Services</span>
+            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.ourServices")}</span>
             <h1 className="font-display text-4xl md:text-5xl text-foreground">{service.title}</h1>
           </motion.div>
         </div>
       </section>
 
-      {/* Description */}
+      {/* Description + Features + Availability */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <AnimatedSection className="lg:col-span-2">
-              <h2 className="font-display text-2xl md:text-3xl text-foreground mb-6">About This Service</h2>
+              <h2 className="font-display text-2xl md:text-3xl text-foreground mb-6">{t("service.aboutService")}</h2>
               <p className="text-muted-foreground leading-relaxed text-lg">{service.longDescription}</p>
             </AnimatedSection>
-            <AnimatedSection delay={0.2}>
+            <AnimatedSection delay={0.2} className="flex flex-col gap-6">
+              {/* Availability Badge */}
+              <div className={`border rounded-xl p-5 ${isInStock ? "border-green-500/30 bg-green-500/5" : "border-primary/30 bg-primary/5"}`}>
+                <div className="flex items-center gap-3 mb-2">
+                  {isInStock ? <Package className="w-5 h-5 text-green-400" /> : <WrenchIcon className="w-5 h-5 text-primary" />}
+                  <span className="font-display text-lg text-foreground">{t("service.availability")}</span>
+                </div>
+                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${isInStock ? "bg-green-500/20 text-green-400" : "bg-primary/20 text-primary"}`}>
+                  {isInStock ? t("service.inStock") : t("service.customMade")}
+                </span>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {isInStock ? t("service.inStockDesc") : t("service.customMadeDesc")}
+                </p>
+              </div>
+
+              {/* Key Features */}
               <div className="bg-card border border-border rounded-xl p-6">
-                <h3 className="font-display text-xl text-foreground mb-4">Key Features</h3>
+                <h3 className="font-display text-xl text-foreground mb-4">{t("service.keyFeatures")}</h3>
                 <div className="flex flex-col gap-3">
                   {service.features.map(f => (
                     <div key={f} className="flex items-center gap-3">
@@ -46,6 +67,14 @@ const ServicePage = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Book button */}
+              <button
+                onClick={() => setBookingOpen(true)}
+                className="gold-gradient text-primary-foreground px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+              >
+                <CalendarDays className="w-5 h-5" /> {t("service.bookService")}
+              </button>
             </AnimatedSection>
           </div>
         </div>
@@ -55,8 +84,8 @@ const ServicePage = () => {
       <section className="py-16 bg-card">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">How It Works</span>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">Our Process</h2>
+            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.howItWorks")}</span>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">{t("service.ourProcess")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {service.process.map((p, i) => (
@@ -72,12 +101,12 @@ const ServicePage = () => {
         </div>
       </section>
 
-      {/* Gallery placeholder using the service image in different crops */}
+      {/* Gallery */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">Portfolio</span>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">Our Work</h2>
+            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.portfolio")}</span>
+            <h2 className="font-display text-3xl md:text-4xl text-foreground">{t("service.ourWork")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[...Array(6)].map((_, i) => (
@@ -96,11 +125,16 @@ const ServicePage = () => {
         <div className="container mx-auto px-4">
           <AnimatedSection>
             <div className="gold-gradient rounded-3xl p-12 text-center">
-              <h2 className="font-display text-3xl text-primary-foreground mb-4">Interested in {service.title}?</h2>
-              <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">Request a free quote and let our experts create the perfect solution for you.</p>
-              <Link to="/contact" className="bg-background text-foreground px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
-                Request Service <ArrowRight className="w-5 h-5" />
-              </Link>
+              <h2 className="font-display text-3xl text-primary-foreground mb-4">{t("service.interested")} {service.title}?</h2>
+              <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">{t("service.requestQuote")}</p>
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link to="/contact" className="bg-background text-foreground px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
+                  {t("service.requestService")} <ArrowRight className="w-5 h-5" />
+                </Link>
+                <button onClick={() => setBookingOpen(true)} className="border-2 border-primary-foreground/30 text-primary-foreground px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:bg-primary-foreground/10 transition-colors">
+                  <CalendarDays className="w-5 h-5" /> {t("service.bookService")}
+                </button>
+              </div>
             </div>
           </AnimatedSection>
         </div>
@@ -110,7 +144,7 @@ const ServicePage = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <h2 className="font-display text-2xl text-foreground">Explore Other Services</h2>
+            <h2 className="font-display text-2xl text-foreground">{t("service.exploreOther")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherServices.map((s, i) => (
@@ -127,6 +161,8 @@ const ServicePage = () => {
           </div>
         </div>
       </section>
+
+      <BookingModal open={bookingOpen} onOpenChange={setBookingOpen} serviceName={service.title} />
     </div>
   );
 };
