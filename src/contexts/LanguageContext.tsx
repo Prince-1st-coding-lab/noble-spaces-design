@@ -165,7 +165,6 @@ const translations: Record<Language, Record<string, string>> = {
     "about.workWithUs": "Dukorere Hamwe",
     "about.missionLabel": "Intego Yacu",
     "about.missionTitle": "Gutanga Ibisubizo Byiza by'Ubwubatsi n'Ibikoresho",
-    "about.missionTitle": "Gutanga Ibisubizo Byiza by'Ubwubatsi n'Ibikoresho",
     "about.missionDesc": "Twiyemeje gukora imyanya itera ishema, yoroheye, kandi irambye. Ku bwobuhanga, guhindurwa ku cyifuzo, n'ubudizayinari bushya, duhindura aho uri kuba ahantu hadasanzwe.",
     "about.valuesLabel": "Indangagaciro Zacu",
     "about.valuesTitle": "Icyo Dushakira",
