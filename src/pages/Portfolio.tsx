@@ -44,7 +44,7 @@ const Portfolio = () => {
       {/* Projects */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <SectionHeading label={t("portfolio.label")} title={t("portfolio.title")} subtitle={t("portfolio.dragHint")} />
+          <SectionHeading label={t("portfolio.label")} title={t("portfolio.title")} description={t("portfolio.dragHint")} />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             {projects.map((p, i) => (
               <AnimatedSection key={i} delay={(i % 2) * 0.15}>
