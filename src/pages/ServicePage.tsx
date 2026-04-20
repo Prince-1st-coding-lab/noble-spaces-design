@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { ArrowRight, CheckCircle, Package, Wrench as WrenchIcon, CalendarDays } from "lucide-react";
 import { motion } from "framer-motion";
 import { getServiceBySlug, services } from "@/data/services";
+import { getGalleryByService } from "@/data/gallery";
 import AnimatedSection from "@/components/AnimatedSection";
 import BookingModal from "@/components/BookingModal";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -11,12 +12,15 @@ const ServicePage = () => {
   const { slug } = useParams();
   const service = getServiceBySlug(slug || "");
   const [bookingOpen, setBookingOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   if (!service) return <Navigate to="/services/interior-design" replace />;
 
   const otherServices = services.filter(s => s.slug !== service.slug).slice(0, 4);
   const isInStock = service.availability === "in-stock";
+  const serviceGallery = getGalleryByService(service.slug);
+  const getGalleryTitle = (item: typeof serviceGallery[number]) =>
+    lang === "fr" ? item.titleFr : lang === "rw" ? item.titleRw : item.titleEn;
 
   return (
     <div>
@@ -109,11 +113,17 @@ const ServicePage = () => {
             <h2 className="font-display text-3xl md:text-4xl text-foreground">{t("service.ourWork")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {[...Array(6)].map((_, i) => (
-              <AnimatedSection key={i} delay={i * 0.1}>
-                <div className="rounded-xl overflow-hidden aspect-square">
-                  <img src={service.image} alt={`${service.title} portfolio ${i + 1}`} loading="lazy" className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" width={400} height={400} />
-                </div>
+            {(serviceGallery.length > 0
+              ? serviceGallery
+              : [{ id: "fallback", image: service.image, titleEn: service.title, titleFr: service.title, titleRw: service.title }]
+            ).map((item, i) => (
+              <AnimatedSection key={item.id} delay={i * 0.1}>
+                <Link to="/gallery" className="block rounded-xl overflow-hidden aspect-square group relative">
+                  <img src={item.image} alt={getGalleryTitle(item as typeof serviceGallery[number])} loading="lazy" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" width={400} height={400} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
+                    <p className="text-foreground text-sm font-medium">{getGalleryTitle(item as typeof serviceGallery[number])}</p>
+                  </div>
+                </Link>
               </AnimatedSection>
             ))}
           </div>

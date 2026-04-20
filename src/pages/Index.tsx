@@ -6,9 +6,9 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import heroImg from "@/assets/hero-home.jpg";
-import kitchenImg from "@/assets/kitchen.jpg";
-import officeImg from "@/assets/office.jpg";
-import furnitureImg from "@/assets/furniture.jpg";
+import tvWallImg from "@/assets/gallery/tv-wall-marble.jpg";
+import execOfficeImg from "@/assets/gallery/executive-office.jpg";
+import bookshelfImg from "@/assets/gallery/bookshelf-desk.jpg";
 
 const testimonials = [
   { name: "Sarah M.", role: "Homeowner", text: "Noble Spaces transformed our home beyond our wildest dreams. The attention to detail and quality of craftsmanship is unmatched.", rating: 5 },
@@ -20,9 +20,9 @@ const Index = () => {
   const { t } = useLanguage();
 
   const categories = [
-    { title: t("home.kitchenDesigns"), image: kitchenImg, link: "/services/kitchen-design" },
-    { title: t("home.officeInteriors"), image: officeImg, link: "/services/office-furniture" },
-    { title: t("home.customFurniture"), image: furnitureImg, link: "/services/furniture-manufacturing" },
+    { title: t("home.tvWalls"), image: tvWallImg, link: "/services/interior-design" },
+    { title: t("home.officeInteriors"), image: execOfficeImg, link: "/services/office-furniture" },
+    { title: t("home.customFurniture"), image: bookshelfImg, link: "/services/furniture-manufacturing" },
   ];
 
   return (
