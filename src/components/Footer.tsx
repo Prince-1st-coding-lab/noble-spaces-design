@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LocationMap from "@/components/LocationMap";
+import logo from "@/assets/logo.png";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -11,7 +12,10 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <h3 className="font-display text-2xl text-foreground mb-2">Noble Spaces</h3>
+            <div className="flex items-center gap-3 mb-2">
+              <img src={logo} alt="Noble Spaces" className="h-10 w-10 object-contain" />
+              <h3 className="font-display text-2xl text-foreground">Noble Spaces</h3>
+            </div>
             <p className="text-xs tracking-[0.2em] uppercase text-primary mb-4">{t("footer.tagline")}</p>
             <p className="text-sm text-muted-foreground leading-relaxed">{t("footer.about")}</p>
           </div>
