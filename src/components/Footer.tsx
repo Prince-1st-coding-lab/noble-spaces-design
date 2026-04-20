@@ -36,6 +36,7 @@ const Footer = () => {
                 <Link key={s.slug} to={`/services/${s.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">{s.shortTitle}</Link>
               ))}
               <Link to="/portfolio" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("nav.portfolio")}</Link>
+              <Link to="/gallery" className="text-sm text-muted-foreground hover:text-primary transition-colors">{t("nav.gallery")}</Link>
             </div>
           </div>
 
