@@ -1,9 +1,9 @@
 // Update these coordinates with the exact location when ready
 export const LOCATION = {
-  lat: -1.9536,
-  lng: 30.0606,
+  lat: -1.9682081812050984,
+  lng: 30.073835284655203,
   label: "Kigali, Rwanda",
-  zoom: 15,
+  zoom: 16,
 };
 
 // OpenStreetMap embed URL (free, no API key)
