@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Phone, Mail, MapPin, Send, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/AnimatedSection";
+import LocationMap from "@/components/LocationMap";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -146,13 +147,7 @@ const Contact = () => {
 
       <section className="pb-20">
         <div className="container mx-auto px-4">
-          <div className="bg-card border border-border rounded-xl overflow-hidden h-[400px] flex items-center justify-center">
-            <div className="text-center">
-              <MapPin className="w-12 h-12 text-primary mx-auto mb-4" />
-              <p className="font-display text-xl text-foreground">Kigali, Rwanda</p>
-              <p className="text-sm text-muted-foreground">{t("contact.visitShowroom")}</p>
-            </div>
-          </div>
+          <LocationMap height="400px" />
         </div>
       </section>
     </div>

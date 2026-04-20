@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { services } from "@/data/services";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LocationMap from "@/components/LocationMap";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -46,6 +47,7 @@ const Footer = () => {
               <div className="flex items-start gap-3 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-primary mt-0.5" /> Kigali, Rwanda
               </div>
+              <LocationMap height="160px" className="mt-2" />
             </div>
           </div>
         </div>
