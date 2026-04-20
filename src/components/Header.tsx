@@ -46,6 +46,7 @@ const Header = () => {
           </div>
 
           <Link to="/portfolio" className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${isActive("/portfolio") ? "text-primary" : "text-foreground"}`}>{t("nav.portfolio")}</Link>
+          <Link to="/gallery" className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${isActive("/gallery") ? "text-primary" : "text-foreground"}`}>{t("nav.gallery")}</Link>
           <Link to="/contact" className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${isActive("/contact") ? "text-primary" : "text-foreground"}`}>{t("nav.contact")}</Link>
           
           <LanguageSwitcher />
@@ -82,6 +83,7 @@ const Header = () => {
             )}
 
             <Link to="/portfolio" onClick={() => setMobileOpen(false)} className="text-foreground hover:text-primary py-2">{t("nav.portfolio")}</Link>
+            <Link to="/gallery" onClick={() => setMobileOpen(false)} className="text-foreground hover:text-primary py-2">{t("nav.gallery")}</Link>
             <Link to="/contact" onClick={() => setMobileOpen(false)} className="text-foreground hover:text-primary py-2">{t("nav.contact")}</Link>
             
             <div className="py-2">
