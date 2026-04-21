@@ -79,12 +79,12 @@ const ServicePage = () => {
               </div>
 
               {/* Key Features */}
-              <div className="bg-card border border-border rounded-xl p-6">
+              <div className="bg-card border rounded-xl p-6" style={{ borderColor: `hsl(${accent} / 0.25)` }}>
                 <h3 className="font-display text-xl text-foreground mb-4">{t("service.keyFeatures")}</h3>
                 <div className="flex flex-col gap-3">
                   {service.features.map(f => (
                     <div key={f} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <CheckCircle className="w-5 h-5 flex-shrink-0" style={{ color: `hsl(${accent})` }} />
                       <span className="text-sm text-muted-foreground">{f}</span>
                     </div>
                   ))}
@@ -107,14 +107,17 @@ const ServicePage = () => {
       <section className="py-16 bg-card">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.howItWorks")}</span>
+            <span className="text-sm font-semibold tracking-[0.2em] uppercase mb-3 block" style={{ color: `hsl(${accent})` }}>{t("service.howItWorks")}</span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">{t("service.ourProcess")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {service.process.map((p, i) => (
               <AnimatedSection key={p.step} delay={i * 0.15}>
-                <div className="relative bg-background border border-border rounded-xl p-6 h-full">
-                  <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center mb-4 font-display text-primary-foreground font-bold">{i + 1}</div>
+                <div className="relative bg-background border rounded-xl p-6 h-full transition-colors" style={{ borderColor: `hsl(${accent} / 0.2)` }}>
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center mb-4 font-display font-bold"
+                    style={{ background: `linear-gradient(135deg, hsl(${accent}), hsl(${accent} / 0.6))`, color: "hsl(var(--primary-foreground))" }}
+                  >{i + 1}</div>
                   <h3 className="font-display text-lg text-foreground mb-2">{p.step}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{p.description}</p>
                 </div>
@@ -128,7 +131,7 @@ const ServicePage = () => {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <AnimatedSection className="text-center mb-12">
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.portfolio")}</span>
+            <span className="text-sm font-semibold tracking-[0.2em] uppercase mb-3 block" style={{ color: `hsl(${accent})` }}>{t("service.portfolio")}</span>
             <h2 className="font-display text-3xl md:text-4xl text-foreground">{t("service.ourWork")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -153,7 +156,10 @@ const ServicePage = () => {
       <section className="py-16 bg-card">
         <div className="container mx-auto px-4">
           <AnimatedSection>
-            <div className="gold-gradient rounded-3xl p-12 text-center">
+            <div
+              className="rounded-3xl p-12 text-center"
+              style={{ background: `linear-gradient(135deg, hsl(${accent}), hsl(${accent} / 0.7))` }}
+            >
               <h2 className="font-display text-3xl text-primary-foreground mb-4">{t("service.interested")} {service.title}?</h2>
               <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">{t("service.requestQuote")}</p>
               <div className="flex flex-wrap gap-4 justify-center">
