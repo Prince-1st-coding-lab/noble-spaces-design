@@ -94,7 +94,8 @@ const ServicePage = () => {
               {/* Book button */}
               <button
                 onClick={() => setBookingOpen(true)}
-                className="gold-gradient text-primary-foreground px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                className="text-primary-foreground px-6 py-3 rounded-full font-semibold flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                style={{ background: `linear-gradient(135deg, hsl(${accent}), hsl(${accent} / 0.7))` }}
               >
                 <CalendarDays className="w-5 h-5" /> {t("service.bookService")}
               </button>
@@ -184,11 +185,18 @@ const ServicePage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {otherServices.map((s, i) => (
               <AnimatedSection key={s.slug} delay={i * 0.1}>
-                <Link to={`/services/${s.slug}`} className="group block bg-card border border-border rounded-xl p-6 hover:border-primary/30 transition-all">
-                  <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center mb-3">
+                <Link
+                  to={`/services/${s.slug}`}
+                  className="group block bg-card border border-border rounded-xl p-6 hover:-translate-y-1 transition-all"
+                  style={{ borderColor: `hsl(${s.theme.accentHsl} / 0.25)` }}
+                >
+                  <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center mb-3"
+                    style={{ background: `linear-gradient(135deg, hsl(${s.theme.accentHsl}), hsl(${s.theme.accentHsl} / 0.6))` }}
+                  >
                     <s.icon className="w-5 h-5 text-primary-foreground" />
                   </div>
-                  <h3 className="font-display text-base text-foreground mb-1 group-hover:text-primary transition-colors">{s.shortTitle}</h3>
+                  <h3 className="font-display text-base text-foreground mb-1 transition-colors" style={{ color: undefined }}>{s.shortTitle}</h3>
                   <p className="text-xs text-muted-foreground line-clamp-2">{s.description}</p>
                 </Link>
               </AnimatedSection>
