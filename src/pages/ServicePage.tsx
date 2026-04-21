@@ -22,16 +22,35 @@ const ServicePage = () => {
   const getGalleryTitle = (item: typeof serviceGallery[number]) =>
     lang === "fr" ? item.titleFr : lang === "rw" ? item.titleRw : item.titleEn;
 
+  // Per-service theme: accent color drives badges, dividers, glows on this page only.
+  const accent = service.theme.accentHsl;
+  const themeStyle = {
+    "--service-accent": accent,
+  } as React.CSSProperties;
+
   return (
-    <div>
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
+    <div style={themeStyle}>
+      {/* Hero with service-specific gradient overlay */}
+      <section className="relative h-[60vh] min-h-[460px] flex items-end overflow-hidden">
         <img src={service.image} alt={service.title} className="absolute inset-0 w-full h-full object-cover" width={1280} height={720} />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        <div className="relative container mx-auto px-4 pb-12">
+        {/* Service-specific tinted overlay */}
+        <div className="absolute inset-0" style={{ background: service.theme.gradient }} />
+        {/* Bottom-to-transparent fade for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+        {/* Decorative accent line */}
+        <div className="absolute top-0 left-0 right-0 h-1" style={{ background: `linear-gradient(90deg, transparent, hsl(${accent}), transparent)` }} />
+        <div className="relative container mx-auto px-4 pb-14">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("service.ourServices")}</span>
-            <h1 className="font-display text-4xl md:text-5xl text-foreground">{service.title}</h1>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-sm border" style={{ background: `hsl(${accent} / 0.15)`, borderColor: `hsl(${accent} / 0.4)` }}>
+                <service.icon className="w-6 h-6" style={{ color: `hsl(${accent})` }} />
+              </div>
+              <span className="text-sm font-semibold tracking-[0.2em] uppercase" style={{ color: `hsl(${accent})` }}>{t("service.ourServices")}</span>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground mb-3 max-w-3xl">{service.title}</h1>
+            <p className="text-lg md:text-xl italic text-muted-foreground max-w-2xl" style={{ color: `hsl(${accent} / 0.85)` }}>
+              — {service.theme.tagline}
+            </p>
           </motion.div>
         </div>
       </section>
