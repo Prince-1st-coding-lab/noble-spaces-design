@@ -14,7 +14,7 @@ const ServicePage = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const { t, lang } = useLanguage();
 
-  if (!service) return <Navigate to="/services/interior-design" replace />;
+  if (!service) return <Navigate to="/services/wardrobes" replace />;
 
   const otherServices = services.filter(s => s.slug !== service.slug).slice(0, 4);
   const isInStock = service.availability === "in-stock";

@@ -20,9 +20,9 @@ const Index = () => {
   const { t } = useLanguage();
 
   const categories = [
-    { title: t("home.tvWalls"), image: tvWallImg, link: "/services/interior-design" },
-    { title: t("home.officeInteriors"), image: execOfficeImg, link: "/services/office-furniture" },
-    { title: t("home.customFurniture"), image: bookshelfImg, link: "/services/furniture-manufacturing" },
+    { title: t("home.tvWalls"), image: tvWallImg, link: "/services/tv-wall-installation" },
+    { title: t("home.officeInteriors"), image: execOfficeImg, link: "/services/office-equipment" },
+    { title: t("home.customFurniture"), image: bookshelfImg, link: "/services/wardrobes" },
   ];
 
   return (
