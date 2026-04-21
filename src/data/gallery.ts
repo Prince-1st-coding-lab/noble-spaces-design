@@ -28,7 +28,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Bibliothèque et bureau intégrés",
     titleRw: "Ishyiguro ry'Ibitabo n'Ameza",
     category: "furniture",
-    serviceSlugs: ["furniture-manufacturing"],
+    serviceSlugs: ["wardrobes"],
   },
   {
     id: "exec-chair-leather",
@@ -37,7 +37,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Chaise de bureau exécutive en cuir",
     titleRw: "Intebe y'Akazi y'Uruhu",
     category: "office",
-    serviceSlugs: ["office-furniture"],
+    serviceSlugs: ["office-equipment"],
   },
   {
     id: "exec-chair-window",
@@ -46,7 +46,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Chaise exécutive ergonomique",
     titleRw: "Intebe Yorohereye y'Umuyobozi",
     category: "office",
-    serviceSlugs: ["office-furniture"],
+    serviceSlugs: ["office-equipment"],
   },
   {
     id: "executive-office",
@@ -55,7 +55,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Bureau exécutif lambrissé",
     titleRw: "Ibiro by'Umuyobozi by'Ibiti",
     category: "interior",
-    serviceSlugs: ["interior-design", "office-furniture"],
+    serviceSlugs: ["office-equipment"],
   },
   {
     id: "file-cabinet-safe",
@@ -64,7 +64,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Classeur sur mesure avec coffre-fort",
     titleRw: "Ikabine y'Amadosiye n'Iby'Ingenzi",
     category: "storage",
-    serviceSlugs: ["furniture-manufacturing"],
+    serviceSlugs: ["wardrobes"],
   },
   {
     id: "modular-shelving",
@@ -73,7 +73,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Système d'étagères modulaires de bureau",
     titleRw: "Ishyiguro ry'Ibiro Riteranywa",
     category: "storage",
-    serviceSlugs: ["office-furniture", "wall-partitioning"],
+    serviceSlugs: ["office-equipment", "wall-partitioning"],
   },
   {
     id: "tv-wall-marble",
@@ -82,7 +82,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Mur TV en marbre et lattes de bois",
     titleRw: "Urukuta rwa TV rw'Imarbre n'Ibiti",
     category: "tv-walls",
-    serviceSlugs: ["interior-design"],
+    serviceSlugs: ["tv-wall-installation"],
   },
   {
     id: "tv-wall-slats",
@@ -91,7 +91,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Mur TV en lattes de bois avec console",
     titleRw: "Urukuta rwa TV rw'Ibiti n'Ameza",
     category: "tv-walls",
-    serviceSlugs: ["interior-design"],
+    serviceSlugs: ["tv-wall-installation"],
   },
   {
     id: "tv-wall-herringbone",
@@ -100,7 +100,7 @@ export const galleryItems: GalleryItem[] = [
     titleFr: "Mur TV à chevrons avec éclairage LED",
     titleRw: "Urukuta rwa TV n'Amatara ya LED",
     category: "interior",
-    serviceSlugs: ["interior-design", "ceiling-installation"],
+    serviceSlugs: ["tv-wall-installation", "ceiling-installation"],
   },
 ];
 
