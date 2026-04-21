@@ -15,21 +15,36 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 
-import furnitureImg from "@/assets/furniture.jpg";
-import sofaImg from "@/assets/sofa.jpg";
-import officeImg from "@/assets/office.jpg";
-import wallPartitionImg from "@/assets/wall-partition.jpg";
-import kitchenImg from "@/assets/kitchen.jpg";
-import ceilingImg from "@/assets/ceiling.jpg";
-import repairImg from "@/assets/repair.jpg";
-import curtainsImg from "@/assets/curtains.jpg";
-import soundproofImg from "@/assets/soundproof.jpg";
-import maintenanceImg from "@/assets/maintenance.jpg";
-import interiorImg from "@/assets/interior-design.jpg";
+import wardrobesHero from "@/assets/services/wardrobes-hero.jpg";
+import kitchenHero from "@/assets/services/kitchen-hero.jpg";
+import tvWallHero from "@/assets/services/tv-wall-hero.jpg";
+import officeHero from "@/assets/services/office-hero.jpg";
+import fabricReplacementHero from "@/assets/services/fabric-replacement-hero.jpg";
+import sofaCleaningHero from "@/assets/services/sofa-cleaning-hero.jpg";
+import curtainsHero from "@/assets/services/curtains-hero.jpg";
+import soundproofHero from "@/assets/services/soundproof-hero.jpg";
+import wallPartitionHero from "@/assets/services/wall-partition-hero.jpg";
+import babyBedsHero from "@/assets/services/baby-beds-hero.jpg";
+import sofaManufacturingHero from "@/assets/services/sofa-manufacturing-hero.jpg";
+import ceilingHero from "@/assets/services/ceiling-hero.jpg";
+import carpetCleaningHero from "@/assets/services/carpet-cleaning-hero.jpg";
+import petHousesHero from "@/assets/services/pet-houses-hero.jpg";
+import diningTablesHero from "@/assets/services/dining-tables-hero.jpg";
 
-import tvWallMarble from "@/assets/gallery/tv-wall-marble.jpg";
-import bookshelfDesk from "@/assets/gallery/bookshelf-desk.jpg";
-import executiveOffice from "@/assets/gallery/executive-office.jpg";
+/**
+ * Per-service visual theme.
+ * - `accentHsl`: HSL triplet (no commas) used for highlight color (e.g. badge ring,
+ *   section dividers, gradient stops). All chosen to harmonize with the global
+ *   brass/forest/cream palette.
+ * - `gradient`: tailwind-friendly linear-gradient string used as the hero overlay
+ *   so each service page reads visually distinct.
+ * - `tagline`: short positioning phrase shown on the service hero.
+ */
+export interface ServiceTheme {
+  accentHsl: string;       // e.g. "30 50% 73%"
+  gradient: string;        // CSS linear-gradient
+  tagline: string;
+}
 
 export interface Service {
   slug: string;
@@ -42,6 +57,7 @@ export interface Service {
   features: string[];
   process: { step: string; description: string }[];
   availability: "in-stock" | "custom-made";
+  theme: ServiceTheme;
 }
 
 export const services: Service[] = [
@@ -52,7 +68,7 @@ export const services: Service[] = [
     description: "Custom-designed wardrobes crafted to maximize space, style, and functionality, tailored to your exact needs.",
     longDescription: "We design and build wardrobes that fit your space and your wardrobe perfectly — from compact reach-ins to expansive walk-in closets. Every unit is engineered with smart internal layouts, premium hardware, and finishes that complement your interior. The result is storage that works as beautifully as it looks.",
     icon: Shirt,
-    image: bookshelfDesk,
+    image: wardrobesHero,
     features: [
       "Custom Internal Layouts",
       "Sliding & Hinged Doors",
@@ -68,6 +84,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Professional fitting with clean handover." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "30 50% 73%",
+      gradient: "linear-gradient(135deg, hsl(108 22% 18% / 0.85) 0%, hsl(30 20% 4% / 0.95) 100%)",
+      tagline: "Storage, designed around you",
+    },
   },
   {
     slug: "kitchen-installation",
@@ -76,7 +97,7 @@ export const services: Service[] = [
     description: "We design and install sleek, modern kitchens that combine beauty, efficiency, and smart storage solutions.",
     longDescription: "Your kitchen deserves to be the standout room of your home. We handle everything from cabinetry and countertops to appliance integration and lighting. Modern layouts, premium materials, and intelligent storage come together in a kitchen built to last.",
     icon: ChefHat,
-    image: kitchenImg,
+    image: kitchenHero,
     features: [
       "Custom Cabinetry",
       "Countertop Selection",
@@ -92,6 +113,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Complete kitchen fit-out by our expert team." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "108 35% 35%",
+      gradient: "linear-gradient(135deg, hsl(108 30% 20% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "The heart of your home",
+    },
   },
   {
     slug: "tv-wall-installation",
@@ -100,7 +126,7 @@ export const services: Service[] = [
     description: "Transform your living space with elegant TV wall units designed for style, organization, and a premium finish.",
     longDescription: "Our TV wall units turn the focal point of your living room into a design statement. Combining wood, marble, slats, and integrated LED lighting, each unit hides cables, organizes media, and showcases your screen with cinema-grade impact.",
     icon: Tv,
-    image: tvWallMarble,
+    image: tvWallHero,
     features: [
       "Custom Wall Layouts",
       "Cable Management",
@@ -116,6 +142,11 @@ export const services: Service[] = [
       { step: "Installation", description: "On-site assembly, mounting, and finishing." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "25 60% 55%",
+      gradient: "linear-gradient(135deg, hsl(25 40% 12% / 0.88) 0%, hsl(30 20% 4% / 0.95) 100%)",
+      tagline: "Cinema-grade focal points",
+    },
   },
   {
     slug: "office-equipment",
@@ -124,7 +155,7 @@ export const services: Service[] = [
     description: "Reliable supply of quality office furniture and equipment to create a productive and professional workspace.",
     longDescription: "We supply complete office setups — desks, executive chairs, filing systems, and meeting room furniture — chosen for ergonomics, durability, and a polished professional look. Whether you're outfitting a single office or an entire floor, we deliver and install on time.",
     icon: Building2,
-    image: executiveOffice,
+    image: officeHero,
     features: [
       "Executive Desks & Chairs",
       "Ergonomic Seating",
@@ -140,6 +171,11 @@ export const services: Service[] = [
       { step: "Delivery & Setup", description: "On-site delivery, assembly, and placement." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "30 50% 73%",
+      gradient: "linear-gradient(135deg, hsl(108 22% 18% / 0.88) 0%, hsl(30 20% 4% / 0.95) 100%)",
+      tagline: "Workspaces that perform",
+    },
   },
   {
     slug: "fabric-replacement",
@@ -148,7 +184,7 @@ export const services: Service[] = [
     description: "Give your furniture a fresh new look with high-quality fabric replacement that restores comfort and beauty.",
     longDescription: "Reupholstering breathes new life into furniture you already love. We strip, repair, and recover sofas, chairs, and headboards with premium fabrics and leathers — refreshing the look while extending the life of every piece.",
     icon: Scissors,
-    image: repairImg,
+    image: fabricReplacementHero,
     features: [
       "Premium Fabric Library",
       "Leather Reupholstery",
@@ -164,6 +200,11 @@ export const services: Service[] = [
       { step: "Delivery", description: "Refreshed piece returned to your home." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "42 30% 70%",
+      gradient: "linear-gradient(135deg, hsl(42 22% 25% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "A second life for what you love",
+    },
   },
   {
     slug: "sofa-cleaning",
@@ -172,7 +213,7 @@ export const services: Service[] = [
     description: "Professional deep cleaning services that remove dirt, stains, and odors, bringing your sofas back to life.",
     longDescription: "Our deep-cleaning service removes embedded dirt, allergens, stains, and odors from fabric and leather sofas. Using safe, professional-grade equipment and solutions, we restore color, freshness, and hygiene without damaging the upholstery.",
     icon: SprayCan,
-    image: sofaImg,
+    image: sofaCleaningHero,
     features: [
       "Deep Steam Cleaning",
       "Stain & Odor Removal",
@@ -188,6 +229,11 @@ export const services: Service[] = [
       { step: "Drying & Finish", description: "Quick-dry process and final inspection." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "180 30% 55%",
+      gradient: "linear-gradient(135deg, hsl(180 25% 15% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Fresh, hygienic, like new",
+    },
   },
   {
     slug: "curtains",
@@ -196,7 +242,7 @@ export const services: Service[] = [
     description: "Stylish and durable curtains supplied and expertly installed to enhance privacy and interior décor.",
     longDescription: "From sheer linens to full blackout drapes, we supply and install curtains tailored to your windows and your style. Choose from a wide library of fabrics, layered systems, and motorized tracks — installed with precision finishing.",
     icon: Blinds,
-    image: curtainsImg,
+    image: curtainsHero,
     features: [
       "Custom Curtains",
       "Blackout & Sheer Options",
@@ -212,6 +258,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Professional fitting and final dressing." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "42 35% 75%",
+      gradient: "linear-gradient(135deg, hsl(42 25% 20% / 0.82) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Light, framed beautifully",
+    },
   },
   {
     slug: "soundproof",
@@ -220,7 +271,7 @@ export const services: Service[] = [
     description: "Effective soundproofing solutions designed to reduce noise and improve comfort in homes and offices.",
     longDescription: "We design acoustic solutions for bedrooms, home theaters, studios, and offices — reducing noise transmission and improving sound quality. Using professional-grade acoustic panels, insulation, and sealing techniques for measurable results.",
     icon: Volume2,
-    image: soundproofImg,
+    image: soundproofHero,
     features: [
       "Acoustic Wall Panels",
       "Floor & Ceiling Treatment",
@@ -236,6 +287,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Expert fitting for maximum effectiveness." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "260 30% 60%",
+      gradient: "linear-gradient(135deg, hsl(260 25% 15% / 0.88) 0%, hsl(30 20% 4% / 0.95) 100%)",
+      tagline: "Silence, by design",
+    },
   },
   {
     slug: "wall-partitioning",
@@ -244,7 +300,7 @@ export const services: Service[] = [
     description: "Smart partitioning solutions to divide spaces efficiently while maintaining a modern and clean look.",
     longDescription: "Divide spaces without compromising design. From glass partitions that preserve light to acoustic panels for privacy, we plan and install partitions that meet your functional needs with a clean, modern finish.",
     icon: LayoutGrid,
-    image: wallPartitionImg,
+    image: wallPartitionHero,
     features: [
       "Glass Partitions",
       "Acoustic Panels",
@@ -260,6 +316,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Professional fitting with clean finishing." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "190 35% 55%",
+      gradient: "linear-gradient(135deg, hsl(190 30% 18% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Define space, preserve light",
+    },
   },
   {
     slug: "baby-beds",
@@ -268,7 +329,7 @@ export const services: Service[] = [
     description: "Safe, comfortable, and beautifully crafted baby beds designed with care for your child's well-being.",
     longDescription: "Our baby beds are built with safety as the highest priority — non-toxic finishes, rounded edges, sturdy construction, and breathable materials. Crafted to grow with your child and beautiful enough to anchor any nursery.",
     icon: Baby,
-    image: furnitureImg,
+    image: babyBedsHero,
     features: [
       "Non-Toxic Finishes",
       "Rounded Safe Edges",
@@ -284,6 +345,11 @@ export const services: Service[] = [
       { step: "Delivery & Setup", description: "Assembly and placement in the nursery." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "20 50% 75%",
+      gradient: "linear-gradient(135deg, hsl(108 22% 22% / 0.78) 0%, hsl(30 20% 4% / 0.9) 100%)",
+      tagline: "Crafted with care, built safe",
+    },
   },
   {
     slug: "sofa-manufacturing",
@@ -292,7 +358,7 @@ export const services: Service[] = [
     description: "High-quality, custom-made sofas built for durability, comfort, and a modern lifestyle.",
     longDescription: "We manufacture sofas from the frame up — hardwood structures, high-resilience foam, and premium upholstery. From modular sectionals to classic three-seaters, every sofa is built to your style, dimensions, and comfort preferences.",
     icon: Armchair,
-    image: sofaImg,
+    image: sofaManufacturingHero,
     features: [
       "Hardwood Frame Construction",
       "High-Resilience Foam",
@@ -308,6 +374,11 @@ export const services: Service[] = [
       { step: "Delivery", description: "Quality check and home delivery." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "42 30% 70%",
+      gradient: "linear-gradient(135deg, hsl(42 22% 22% / 0.78) 0%, hsl(30 20% 4% / 0.9) 100%)",
+      tagline: "Built from the frame up",
+    },
   },
   {
     slug: "ceiling-installation",
@@ -316,7 +387,7 @@ export const services: Service[] = [
     description: "Professional ceiling designs and installations that enhance the overall appearance of your interior space.",
     longDescription: "Transform any room from the top down. We install coffered ceilings, stretch ceilings, suspended systems, and decorative moldings — with integrated LED lighting and acoustic treatment for a polished, modern interior.",
     icon: Lamp,
-    image: ceilingImg,
+    image: ceilingHero,
     features: [
       "Coffered Ceilings",
       "Stretch Ceilings",
@@ -332,6 +403,11 @@ export const services: Service[] = [
       { step: "Installation", description: "Expert fitting with integrated lighting." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "40 60% 65%",
+      gradient: "linear-gradient(135deg, hsl(40 30% 20% / 0.82) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Look up — make it stunning",
+    },
   },
   {
     slug: "carpet-cleaning",
@@ -340,7 +416,7 @@ export const services: Service[] = [
     description: "Thorough carpet cleaning that removes deep dirt and restores freshness, hygiene, and softness.",
     longDescription: "We deep-clean carpets and rugs using professional extraction equipment that lifts embedded dirt, allergens, and stains. The result is a fresher, softer, healthier floor without damage to fibers or color.",
     icon: SprayCan,
-    image: interiorImg,
+    image: carpetCleaningHero,
     features: [
       "Hot Water Extraction",
       "Stain Removal",
@@ -356,6 +432,11 @@ export const services: Service[] = [
       { step: "Drying", description: "Fast-dry finish and final inspection." },
     ],
     availability: "in-stock",
+    theme: {
+      accentHsl: "160 30% 50%",
+      gradient: "linear-gradient(135deg, hsl(160 25% 15% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Deeper clean, fresher floors",
+    },
   },
   {
     slug: "pet-houses",
@@ -364,7 +445,7 @@ export const services: Service[] = [
     description: "Durable and comfortable pet houses designed to provide a safe and cozy home for your pets.",
     longDescription: "Custom-built pet houses for dogs, cats, and small animals — weather-resistant, well-ventilated, and built to last. Designed to match your home aesthetic while keeping your pet warm, dry, and secure.",
     icon: Dog,
-    image: maintenanceImg,
+    image: petHousesHero,
     features: [
       "Weather-Resistant Materials",
       "Insulated Walls",
@@ -380,6 +461,11 @@ export const services: Service[] = [
       { step: "Delivery", description: "Delivered and placed at your location." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "108 30% 40%",
+      gradient: "linear-gradient(135deg, hsl(108 30% 18% / 0.82) 0%, hsl(30 20% 4% / 0.9) 100%)",
+      tagline: "A safe little home",
+    },
   },
   {
     slug: "dining-tables",
@@ -388,7 +474,7 @@ export const services: Service[] = [
     description: "Beautifully crafted dining tables designed to bring people together, combining durability, elegance, and everyday functionality.",
     longDescription: "From intimate four-seaters to grand banquet tables, we craft dining tables that become the heart of your home. Solid hardwoods, refined finishes, and timeless silhouettes — built for years of family meals and gatherings.",
     icon: UtensilsCrossed,
-    image: furnitureImg,
+    image: diningTablesHero,
     features: [
       "Solid Hardwood Construction",
       "Custom Sizing & Shapes",
@@ -404,6 +490,11 @@ export const services: Service[] = [
       { step: "Delivery", description: "Professional delivery and placement." },
     ],
     availability: "custom-made",
+    theme: {
+      accentHsl: "25 55% 60%",
+      gradient: "linear-gradient(135deg, hsl(25 35% 18% / 0.85) 0%, hsl(30 20% 4% / 0.92) 100%)",
+      tagline: "Where everyone gathers",
+    },
   },
 ];
 
