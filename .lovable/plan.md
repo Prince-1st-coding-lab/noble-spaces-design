@@ -1,55 +1,74 @@
 
-## Add Real Project Images to Services + Build Unified Gallery Page
 
-I'll embed your 9 uploaded photos as real project work across the relevant service pages, and create a dedicated **Gallery** page that showcases all of them in one filterable grid.
+## Update Services + Apply New Green/Brass Color Palette
 
-### Image → Service mapping
+I'll restructure the services list to your 15 entries with new copy, and reskin the site with the green + brass + cream palette from your reference image.
 
-| # | Image | Assigned to service(s) | Category tag |
+### 1. Services overhaul (`src/data/services.ts`)
+
+Replace the current 12 services with **15 services** in this exact order, using your descriptions verbatim:
+
+| # | Slug | Title | Icon | Availability |
+|---|---|---|---|---|
+| 1 | `wardrobes` | Wardrobes Manufacturing and Supply | `Shirt` | custom-made |
+| 2 | `kitchen-installation` | Modern Kitchen Installations | `ChefHat` | custom-made |
+| 3 | `tv-wall-installation` | Modern Media TV Wall Installation | `Tv` | custom-made |
+| 4 | `office-equipment` | Office Equipment Supply | `Building2` | in-stock |
+| 5 | `fabric-replacement` | Fabric Replacement Services | `Scissors` | in-stock |
+| 6 | `sofa-cleaning` | Sofa Cleaning Services | `SprayCan` | in-stock |
+| 7 | `curtains` | Curtains Supply and Installation | `Blinds` | in-stock |
+| 8 | `soundproof` | Soundproof Installation | `Volume2` | custom-made |
+| 9 | `wall-partitioning` | Wall Partitioning Works | `LayoutGrid` | custom-made |
+| 10 | `baby-beds` | Baby Beds Manufacturing | `Baby` | custom-made |
+| 11 | `sofa-manufacturing` | Sofa Manufacturing | `Armchair` | custom-made |
+| 12 | `ceiling-installation` | Ceiling Installation | `Lamp` | in-stock |
+| 13 | `carpet-cleaning` | Carpet Cleaning Services | `SprayCan` | in-stock |
+| 14 | `pet-houses` | Pet Houses Manufacturing | `Dog` | custom-made |
+| 15 | `dining-tables` | Dining Tables Manufacturing | `UtensilsCrossed` | custom-made |
+
+For each service:
+- Use your provided one-line description as `description`
+- Generate a 2–3 sentence `longDescription` expanding on it
+- Generate 6 relevant `features` and a 4-step `process` (Consultation → Design/Selection → Production/Service → Delivery/Installation, tailored per service)
+- Reuse existing relevant images where they fit (kitchen, ceiling, soundproof, sofa, office, curtains, wall-partition, repair). For new services without an image (wardrobes, tv-wall, fabric-replacement, sofa-cleaning, baby-beds, carpet-cleaning, pet-houses, dining-tables), reuse the closest existing asset as a placeholder so nothing breaks. The Gallery thumbnails on each service page already pull from real photos via `getGalleryByService`.
+
+### 2. Gallery service-tag remap (`src/data/gallery.ts`)
+
+Update `serviceSlugs` on existing gallery items to point at the new slugs:
+- TV wall photos (3) → `tv-wall-installation` + `interior-design` removed → `ceiling-installation` (for the LED one)
+- Executive office, exec chairs (3) → `office-equipment`
+- Bookshelf, file cabinet → `wardrobes`
+- Modular shelving → `office-equipment` + `wall-partitioning`
+
+### 3. Color palette update (`src/index.css`)
+
+Switch from gold/dark-green to your reference palette:
+
+| Token | Old | New | Hex source |
 |---|---|---|---|
-| 1 | Wooden bookshelf with built-in desk | Furniture Manufacturing | Bookshelf / Study |
-| 2 | Black executive leather chair | Office Furniture | Office Chair |
-| 3 | Black ergonomic chair (city window) | Office Furniture | Executive Chair |
-| 4 | Luxury wood-paneled executive office | Interior Design + Office Furniture | Executive Office |
-| 5 | File cabinet with binders + safe | Furniture Manufacturing | Storage Cabinet |
-| 6 | White modular office shelving | Office Furniture + Wall Partitioning | Modular Storage |
-| 7 | TV wall unit – marble + wood slats | Interior Design | TV Wall Unit |
-| 8 | TV wall – wood slats + console | Interior Design | TV Wall Unit |
-| 9 | TV wall – warm LED + herringbone | Interior Design + Ceiling Installation | TV Wall + Cove Lighting |
+| `--background` | dark teal-green | very dark olive-black | `#0c0a08` |
+| `--card` / `--green-medium` | dark green | deep forest green | `#2a3723` |
+| `--secondary` / `--green-light` | mid green | sage | `#b9bba8` |
+| `--foreground` / `--cream` | white | warm cream | `#e8e5dd` |
+| `--primary` / `--accent` / `--gold` | yellow gold | warm brass/tan | `#dcbc98` |
+| `--primary-foreground` | dark green | `#0c0a08` | |
+| `--muted-foreground` | grey-green | muted sage | derived from `#b9bba8` |
+| `--border` | dark green | subtle sage at low opacity | derived |
 
-### What I'll build
+Update `.gold-gradient` to a brass-to-cream gradient (`#dcbc98` → `#e8e5dd`) and `.green-gradient` to forest-to-black (`#2a3723` → `#0c0a08`). Keep utility class names (`gold-gradient`, `text-gold-gradient`, `gold-glow`, `gold-border`) so no component code needs to change — they'll just render in the new brass tones.
 
-**1. Save assets** — copy all 9 uploads into `src/assets/gallery/` with descriptive filenames (e.g. `bookshelf-desk.jpg`, `exec-chair-black.jpg`, `tv-wall-marble.jpg`, etc.)
+### 4. Translations & navigation
 
-**2. New gallery data file** (`src/data/gallery.ts`)
-- Single source of truth: array of `{ id, image, titleEn/Fr/Rw, category, serviceSlugs[] }`
-- Each item tagged with one or more service slugs so service pages can filter by their own work
+- The existing services use hard-coded English titles (no i18n keys), so no translation file changes required for service titles
+- No nav changes needed — services are auto-listed from `services.ts`
 
-**3. Service pages get real photos** (`src/pages/ServicePage.tsx`)
-- Replace the current "6 copies of the hero image" gallery grid with images filtered from `gallery.ts` matching the current service's slug
-- Falls back to the hero image only if a service has no tagged photos yet
-- Each thumbnail links to the new Gallery page
+### 5. Files touched
+- `src/data/services.ts` — full rewrite (15 services, new icons, new copy)
+- `src/data/gallery.ts` — remap `serviceSlugs` to new slugs
+- `src/index.css` — palette tokens + gradients
+- No changes needed to: ServicePage, Header, Footer, Gallery, Index — they all read from the data + tokens above
 
-**4. New Gallery page** (`src/pages/Gallery.tsx`, route `/gallery`)
-- Hero section with title + intro
-- **Category filter chips** (All, Office, Interior, Furniture, TV Walls, Storage)
-- Responsive masonry-style grid (2 cols mobile / 3 cols tablet / 4 cols desktop)
-- Click any image → lightbox modal (using existing `Dialog` component) with title, category, and "Book similar" CTA
-- Smooth Framer Motion fade-in on filter change
+### Notes
+- Old service slugs (e.g. `/services/interior-design`, `/services/furniture-manufacturing`) will 404 → I'll keep the existing fallback `<Navigate to="/services/interior-design" />` but update it to `/services/wardrobes` (the new first entry) so any stale links land somewhere valid.
+- "Interior Design" and "Furniture Manufacturing" / "Door Manufacturing" / "Furniture Repair" / "Maintenance" are dropped per your new list. If you want any of them kept, say which and I'll add them back.
 
-**5. Navigation + translations**
-- Add "Gallery" link to Header nav and Footer (between Portfolio and Contact)
-- Add translation keys (`nav.gallery`, `gallery.title`, `gallery.subtitle`, `gallery.filterAll`, `gallery.viewLarger`, etc.) for English, Kinyarwanda, and French
-- Register `/gallery` route in `App.tsx`
-
-**6. Home page touch-up** (optional, light)
-- The existing "Signature Categories" section on the homepage will pull 3 standout images from the gallery (TV wall, executive office, bookshelf) so the homepage immediately reflects real work
-
-### Visual direction
-- Cards: rounded-2xl, subtle border, hover scale + gold ring
-- Lightbox: dark backdrop, image fills viewport with rounded corners, caption bar at bottom
-- Filter chips: pill-shaped, gold-gradient when active
-
-### Difference vs existing Portfolio page
-- **Portfolio** = before/after slider comparisons (4 transformation projects)
-- **Gallery** = pure showcase grid of finished work, filterable by category, with lightbox — these 9 photos are completed pieces, not before/after pairs, so the gallery format fits them better
