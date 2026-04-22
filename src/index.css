@@ -6,52 +6,54 @@
 
 @layer base {
   :root {
-    --background: 30 20% 4%;
-    --foreground: 42 22% 89%;
+    /* Logo-derived palette: deep forest green + warm cream/pale yellow */
+    --background: 140 30% 10%;
+    --foreground: 50 70% 90%;
 
-    --card: 108 22% 18%;
-    --card-foreground: 42 22% 89%;
+    --card: 140 35% 15%;
+    --card-foreground: 50 70% 90%;
 
-    --popover: 108 22% 18%;
-    --popover-foreground: 42 22% 89%;
+    --popover: 140 35% 15%;
+    --popover-foreground: 50 70% 90%;
 
-    --primary: 30 50% 73%;
-    --primary-foreground: 30 20% 4%;
+    /* Primary = pale cream/yellow from logo background */
+    --primary: 50 75% 82%;
+    --primary-foreground: 140 40% 12%;
 
-    --secondary: 108 18% 24%;
-    --secondary-foreground: 42 22% 89%;
+    --secondary: 140 25% 22%;
+    --secondary-foreground: 50 70% 90%;
 
-    --muted: 108 15% 20%;
-    --muted-foreground: 64 11% 70%;
+    --muted: 140 20% 18%;
+    --muted-foreground: 50 25% 75%;
 
-    --accent: 30 50% 73%;
-    --accent-foreground: 30 20% 4%;
+    --accent: 50 75% 82%;
+    --accent-foreground: 140 40% 12%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 42 22% 89%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 50 70% 90%;
 
-    --border: 64 11% 70% / 0.15;
-    --input: 108 18% 24%;
-    --ring: 30 50% 73%;
+    --border: 50 30% 70% / 0.18;
+    --input: 140 25% 22%;
+    --ring: 50 75% 82%;
 
     --radius: 0.5rem;
 
-    --gold: 30 50% 73%;
-    --gold-light: 42 22% 89%;
-    --gold-dark: 30 40% 55%;
-    --green-deep: 30 20% 4%;
-    --green-medium: 108 22% 18%;
-    --green-light: 64 11% 70%;
-    --cream: 42 22% 89%;
+    --gold: 50 75% 82%;
+    --gold-light: 50 80% 92%;
+    --gold-dark: 45 60% 65%;
+    --green-deep: 140 40% 8%;
+    --green-medium: 140 35% 15%;
+    --green-light: 140 25% 35%;
+    --cream: 50 80% 92%;
 
-    --sidebar-background: 108 22% 18%;
-    --sidebar-foreground: 42 22% 89%;
-    --sidebar-primary: 30 50% 73%;
-    --sidebar-primary-foreground: 30 20% 4%;
-    --sidebar-accent: 108 18% 24%;
-    --sidebar-accent-foreground: 42 22% 89%;
-    --sidebar-border: 64 11% 70% / 0.15;
-    --sidebar-ring: 30 50% 73%;
+    --sidebar-background: 140 35% 15%;
+    --sidebar-foreground: 50 70% 90%;
+    --sidebar-primary: 50 75% 82%;
+    --sidebar-primary-foreground: 140 40% 12%;
+    --sidebar-accent: 140 25% 22%;
+    --sidebar-accent-foreground: 50 70% 90%;
+    --sidebar-border: 50 30% 70% / 0.18;
+    --sidebar-ring: 50 75% 82%;
   }
 }
 
@@ -71,25 +73,25 @@
 
 @layer utilities {
   .gold-gradient {
-    background: linear-gradient(135deg, hsl(30 50% 73%), hsl(42 22% 89%));
+    background: linear-gradient(135deg, hsl(50 75% 82%), hsl(50 80% 92%));
   }
 
   .green-gradient {
-    background: linear-gradient(180deg, hsl(108 22% 18%), hsl(30 20% 4%));
+    background: linear-gradient(180deg, hsl(140 35% 15%), hsl(140 40% 8%));
   }
 
   .text-gold-gradient {
-    background: linear-gradient(135deg, hsl(30 50% 73%), hsl(42 22% 89%));
+    background: linear-gradient(135deg, hsl(50 75% 82%), hsl(50 80% 92%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gold-border {
-    border-color: hsl(30 50% 73% / 0.3);
+    border-color: hsl(50 75% 82% / 0.35);
   }
 
   .gold-glow {
-    box-shadow: 0 0 30px hsl(30 50% 73% / 0.2);
+    box-shadow: 0 0 30px hsl(50 75% 82% / 0.25);
   }
 }

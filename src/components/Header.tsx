@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronDown, Menu, X, Phone } from "lucide-react";
+import { ChevronDown, Menu, X, Phone, Instagram, Facebook } from "lucide-react";
 import { services } from "@/data/services";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo.png";
+
+const SOCIALS = {
+  instagram: "https://www.instagram.com/noblespaces",
+  facebook: "https://www.facebook.com/noblespaces",
+};
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -50,7 +55,28 @@ const Header = () => {
           <Link to="/contact" className={`text-sm font-medium tracking-wide transition-colors hover:text-primary ${isActive("/contact") ? "text-primary" : "text-foreground"}`}>{t("nav.contact")}</Link>
           
           <LanguageSwitcher />
-          
+
+          <div className="flex items-center gap-2 border-l border-border pl-4">
+            <a
+              href={SOCIALS.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-foreground hover:text-primary transition-colors p-1.5 rounded-full hover:bg-secondary"
+            >
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a
+              href={SOCIALS.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="text-foreground hover:text-primary transition-colors p-1.5 rounded-full hover:bg-secondary"
+            >
+              <Facebook className="w-4 h-4" />
+            </a>
+          </div>
+
           <a href="tel:+250788906410" className="gold-gradient text-primary-foreground px-5 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity">
             <Phone className="w-4 h-4" /> {t("nav.getQuote")}
           </a>
@@ -86,10 +112,30 @@ const Header = () => {
             <Link to="/gallery" onClick={() => setMobileOpen(false)} className="text-foreground hover:text-primary py-2">{t("nav.gallery")}</Link>
             <Link to="/contact" onClick={() => setMobileOpen(false)} className="text-foreground hover:text-primary py-2">{t("nav.contact")}</Link>
             
-            <div className="py-2">
+            <div className="py-2 flex items-center justify-between">
               <LanguageSwitcher />
+              <div className="flex items-center gap-3">
+                <a
+                  href={SOCIALS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="text-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-secondary"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a
+                  href={SOCIALS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="text-foreground hover:text-primary transition-colors p-2 rounded-full hover:bg-secondary"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+              </div>
             </div>
-            
+
             <a href="tel:+250788906410" className="gold-gradient text-primary-foreground px-5 py-3 rounded-full text-sm font-semibold text-center mt-2">
               <Phone className="w-4 h-4 inline mr-2" /> {t("nav.getQuote")}
             </a>
