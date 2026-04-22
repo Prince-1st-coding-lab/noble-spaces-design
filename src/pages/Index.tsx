@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Star, Quote } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { motion } from "framer-motion";
 import { services } from "@/data/services";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -11,9 +11,9 @@ import execOfficeImg from "@/assets/gallery/executive-office.jpg";
 import bookshelfImg from "@/assets/gallery/bookshelf-desk.jpg";
 
 const testimonials = [
-  { name: "Sarah M.", role: "Homeowner", text: "Noble Spaces transformed our home beyond our wildest dreams. The attention to detail and quality of craftsmanship is unmatched.", rating: 5 },
-  { name: "Jean P.", role: "Business Owner", text: "Our office redesign boosted team morale and productivity. The modern furniture and layout are simply outstanding.", rating: 5 },
-  { name: "Claire N.", role: "Hotel Manager", text: "From kitchen renovation to custom furniture, Noble Spaces delivered excellence at every step. Highly recommended!", rating: 5 },
+  { name: "Sarah M.", role: "Homeowner", text: "Noble Spaces transformed our home beyond our wildest dreams. The attention to detail and quality of craftsmanship is unmatched." },
+  { name: "Jean P.", role: "Business Owner", text: "Our office redesign boosted team morale and productivity. The modern furniture and layout are simply outstanding." },
+  { name: "Claire N.", role: "Hotel Manager", text: "From kitchen renovation to custom furniture, Noble Spaces delivered excellence at every step. Highly recommended!" },
 ];
 
 const Index = () => {
@@ -27,47 +27,57 @@ const Index = () => {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
+      {/* Hero — quiet, editorial */}
+      <section className="relative min-h-[88vh] flex items-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Luxury living room by Noble Spaces" className="w-full h-full object-cover" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-transparent" />
+          <img src={heroImg} alt="Luxury living room by Noble Spaces" className="w-full h-full object-cover opacity-40" width={1920} height={1080} />
+          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/30" />
         </div>
-        <div className="relative container mx-auto px-4">
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-2xl">
-            <span className="text-primary text-sm font-semibold tracking-[0.3em] uppercase mb-4 block">{t("home.welcome")}</span>
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-foreground mb-4 leading-tight">
-              {t("home.tagline").split(",")[0]},<br /><span className="text-gold-gradient">{t("home.tagline").split(",")[1] || "Our Passion"}</span>
+        <div className="relative container mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, ease: "easeOut" }} className="max-w-2xl">
+            <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-8 block">
+              — {t("home.welcome")}
+            </span>
+            <h1 className="font-display font-light text-5xl md:text-6xl lg:text-7xl text-foreground mb-8 leading-[1.05] tracking-tight">
+              {t("home.tagline").split(",")[0]},
+              <br />
+              <span className="italic text-primary/90 font-light">{t("home.tagline").split(",")[1] || "Our Passion"}</span>
             </h1>
-            <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-lg leading-relaxed">
+            <p className="text-muted-foreground text-base md:text-lg mb-12 max-w-md leading-relaxed font-light">
               {t("home.heroDesc")}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="gold-gradient text-primary-foreground px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
-                {t("nav.getQuote")} <ArrowRight className="w-5 h-5" />
+            <div className="flex flex-wrap gap-3 items-center">
+              <Link to="/contact" className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-7 py-3.5 text-xs font-medium tracking-[0.2em] uppercase hover:bg-primary/90 transition-colors rounded-sm">
+                {t("nav.getQuote")}
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
-              <Link to="/about" className="border border-primary/30 text-foreground px-8 py-4 rounded-full font-semibold hover:bg-primary/10 transition-colors">
+              <Link to="/about" className="group inline-flex items-center gap-3 text-foreground/90 px-7 py-3.5 text-xs font-medium tracking-[0.2em] uppercase border border-border/30 hover:border-primary/60 hover:text-primary transition-colors rounded-sm">
                 {t("home.learnMore")}
               </Link>
             </div>
           </motion.div>
         </div>
+        {/* tiny scroll cue */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block">
+          <span className="text-[10px] tracking-widest-2 uppercase text-muted-foreground/60">scroll</span>
+        </div>
       </section>
 
-      {/* Featured Categories */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
+      {/* Featured Categories — calm grid */}
+      <section className="py-28 md:py-36">
+        <div className="container mx-auto px-6">
           <SectionHeading label={t("home.whatWeDo")} title={t("home.categories")} description={t("home.categoriesDesc")} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border/15">
             {categories.map((cat, i) => (
-              <AnimatedSection key={cat.title} delay={i * 0.15}>
-                <Link to={cat.link} className="group block relative rounded-2xl overflow-hidden aspect-[4/3]">
-                  <img src={cat.image} alt={cat.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" width={1280} height={720} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="font-display text-2xl text-foreground mb-1">{cat.title}</h3>
-                    <span className="text-primary text-sm font-medium inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                      {t("home.explore")} <ArrowRight className="w-4 h-4" />
+              <AnimatedSection key={cat.title} delay={i * 0.1}>
+                <Link to={cat.link} className="group block relative aspect-[4/5] overflow-hidden bg-background">
+                  <img src={cat.image} alt={cat.title} loading="lazy" className="w-full h-full object-cover opacity-70 transition-all duration-1000 group-hover:opacity-90 group-hover:scale-[1.03]" width={1280} height={1600} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <h3 className="font-display font-light text-2xl text-foreground mb-3">{cat.title}</h3>
+                    <span className="text-primary/90 text-[10px] font-medium tracking-widest-2 uppercase inline-flex items-center gap-2 transition-all">
+                      {t("home.explore")} <span className="w-6 h-px bg-primary/60 transition-all group-hover:w-10" />
                     </span>
                   </div>
                 </Link>
@@ -77,22 +87,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* All Services */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      {/* All Services — minimalist list */}
+      <section className="py-28 md:py-36 border-t border-border/10">
+        <div className="container mx-auto px-6">
           <SectionHeading label={t("home.ourServices")} title={t("home.completeSolutions")} description={t("home.servicesDesc")} />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-px max-w-6xl mx-auto">
             {services.map((s, i) => (
-              <AnimatedSection key={s.slug} delay={i * 0.05}>
-                <Link to={`/services/${s.slug}`} className="group block bg-card border border-border rounded-xl p-6 hover:border-primary/30 hover:gold-glow transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full gold-gradient flex items-center justify-center mb-4">
-                    <s.icon className="w-6 h-6 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-display text-lg text-foreground mb-2 group-hover:text-primary transition-colors">{s.shortTitle}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">{s.description}</p>
-                  <span className="text-primary text-sm font-medium mt-3 inline-flex items-center gap-1 group-hover:gap-2 transition-all">
-                    {t("home.learnMore")} <ArrowRight className="w-4 h-4" />
+              <AnimatedSection key={s.slug} delay={i * 0.03}>
+                <Link to={`/services/${s.slug}`} className="group flex items-start gap-5 py-7 border-b border-border/15 hover:border-primary/40 transition-colors">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-full border border-border/30 flex items-center justify-center text-primary/80 group-hover:border-primary/60 group-hover:text-primary transition-colors">
+                    <s.icon className="w-4 h-4" strokeWidth={1.25} />
                   </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display font-light text-lg text-foreground mb-1.5 group-hover:text-primary transition-colors">{s.shortTitle}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed font-light line-clamp-2">{s.description}</p>
+                  </div>
+                  <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary group-hover:translate-x-0.5 transition-all mt-1.5" strokeWidth={1.25} />
                 </Link>
               </AnimatedSection>
             ))}
@@ -100,24 +110,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4">
+      {/* Testimonials — quiet, no boxes */}
+      <section className="py-28 md:py-36 border-t border-border/10">
+        <div className="container mx-auto px-6">
           <SectionHeading label={t("home.testimonials")} title={t("home.whatClientsSay")} />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 max-w-6xl mx-auto">
             {testimonials.map((te, i) => (
               <AnimatedSection key={te.name} delay={i * 0.15}>
-                <div className="bg-background border border-border rounded-xl p-8 relative">
-                  <Quote className="w-8 h-8 text-primary/20 absolute top-6 right-6" />
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: te.rating }).map((_, j) => (
-                      <Star key={j} className="w-4 h-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-6">"{te.text}"</p>
-                  <div>
-                    <p className="font-semibold text-foreground">{te.name}</p>
-                    <p className="text-xs text-muted-foreground">{te.role}</p>
+                <div className="relative">
+                  <Quote className="w-6 h-6 text-primary/30 mb-6" strokeWidth={1.25} />
+                  <p className="font-display font-light text-foreground/90 text-lg md:text-xl leading-relaxed mb-8 italic">
+                    "{te.text}"
+                  </p>
+                  <div className="pt-6 border-t border-border/15">
+                    <p className="text-sm text-foreground font-medium">{te.name}</p>
+                    <p className="text-[11px] tracking-widest-2 uppercase text-muted-foreground/70 mt-1">{te.role}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -126,15 +133,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      {/* CTA — restrained */}
+      <section className="py-28 md:py-36 border-t border-border/10">
+        <div className="container mx-auto px-6">
           <AnimatedSection>
-            <div className="gold-gradient rounded-3xl p-12 md:p-16 text-center">
-              <h2 className="font-display text-3xl md:text-4xl text-primary-foreground mb-4">{t("home.ctaTitle")}</h2>
-              <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">{t("home.ctaDesc")}</p>
-              <Link to="/contact" className="bg-background text-foreground px-8 py-4 rounded-full font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
-                {t("home.contactUs")} <ArrowRight className="w-5 h-5" />
+            <div className="max-w-2xl mx-auto text-center">
+              <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-6 block">— Begin</span>
+              <h2 className="font-display font-light text-3xl md:text-5xl text-foreground mb-6 leading-[1.15]">{t("home.ctaTitle")}</h2>
+              <p className="text-muted-foreground font-light mb-10 leading-relaxed">{t("home.ctaDesc")}</p>
+              <Link to="/contact" className="group inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 text-xs font-medium tracking-[0.2em] uppercase hover:bg-primary/90 transition-colors rounded-sm">
+                {t("home.contactUs")}
+                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
               </Link>
             </div>
           </AnimatedSection>
