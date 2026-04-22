@@ -5,7 +5,6 @@ import AnimatedSection from "@/components/AnimatedSection";
 import SectionHeading from "@/components/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 import aboutImg from "@/assets/about-team.jpg";
-import heroImg from "@/assets/hero-home.jpg";
 
 const About = () => {
   const { t } = useLanguage();
@@ -19,64 +18,64 @@ const About = () => {
 
   return (
     <div>
-      {/* Hero */}
-      <section className="relative h-[50vh] min-h-[400px] flex items-end overflow-hidden">
-        <img src={heroImg} alt="Noble Spaces studio" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        <div className="relative container mx-auto px-4 pb-12">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("about.title")}</span>
-            <h1 className="font-display text-4xl md:text-5xl text-foreground">{t("about.heading")}</h1>
+      {/* Hero — minimal, text only */}
+      <section className="pt-40 pb-20 md:pt-48 md:pb-28 border-b border-border/10">
+        <div className="container mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
+            <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-6 block">— {t("about.title")}</span>
+            <h1 className="font-display font-light text-4xl md:text-6xl lg:text-7xl text-foreground leading-[1.05] tracking-tight">
+              {t("about.heading")}
+            </h1>
           </motion.div>
         </div>
       </section>
 
       {/* Story */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <AnimatedSection>
-              <div className="rounded-2xl overflow-hidden">
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+            <AnimatedSection className="lg:col-span-6">
+              <div className="overflow-hidden rounded-sm">
                 <img src={aboutImg} alt="Noble Spaces team" loading="lazy" className="w-full h-full object-cover" width={1280} height={800} />
               </div>
             </AnimatedSection>
-            <AnimatedSection delay={0.2}>
-              <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("about.whoWeAre")}</span>
-              <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6">{t("about.craftingTitle")}</h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">{t("about.story1")}</p>
-              <p className="text-muted-foreground leading-relaxed mb-6">{t("about.story2")}</p>
-              <Link to="/contact" className="gold-gradient text-primary-foreground px-6 py-3 rounded-full font-semibold inline-flex items-center gap-2 hover:opacity-90 transition-opacity">
-                {t("about.workWithUs")} <ArrowRight className="w-5 h-5" />
+            <AnimatedSection delay={0.2} className="lg:col-span-6">
+              <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-5 block">— {t("about.whoWeAre")}</span>
+              <h2 className="font-display font-light text-3xl md:text-4xl text-foreground mb-8 leading-[1.15]">{t("about.craftingTitle")}</h2>
+              <p className="text-muted-foreground font-light leading-relaxed mb-5">{t("about.story1")}</p>
+              <p className="text-muted-foreground font-light leading-relaxed mb-10">{t("about.story2")}</p>
+              <Link to="/contact" className="group inline-flex items-center gap-3 text-primary text-xs font-medium tracking-[0.22em] uppercase border-b border-primary/40 pb-1 hover:border-primary transition-colors">
+                {t("about.workWithUs")} <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" strokeWidth={1.5} />
               </Link>
             </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="py-20 bg-card">
-        <div className="container mx-auto px-4 text-center">
+      {/* Mission — quiet block */}
+      <section className="py-24 md:py-32 border-y border-border/10">
+        <div className="container mx-auto px-6 text-center">
           <AnimatedSection>
-            <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{t("about.missionLabel")}</span>
-            <h2 className="font-display text-3xl md:text-4xl text-foreground mb-6 max-w-3xl mx-auto">{t("about.missionTitle")}</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">{t("about.missionDesc")}</p>
+            <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-6 block">— {t("about.missionLabel")}</span>
+            <h2 className="font-display font-light italic text-3xl md:text-5xl text-foreground/90 mb-8 max-w-3xl mx-auto leading-[1.2]">"{t("about.missionTitle")}"</h2>
+            <p className="text-muted-foreground font-light max-w-xl mx-auto leading-relaxed">{t("about.missionDesc")}</p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
+      {/* Values — minimal, no boxes */}
+      <section className="py-24 md:py-32">
+        <div className="container mx-auto px-6">
           <SectionHeading label={t("about.valuesLabel")} title={t("about.valuesTitle")} />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-px">
             {values.map((v, i) => (
-              <AnimatedSection key={v.title} delay={i * 0.15}>
-                <div className="bg-card border border-border rounded-xl p-8 text-center h-full">
-                  <div className="w-14 h-14 rounded-full gold-gradient flex items-center justify-center mx-auto mb-4">
-                    <v.icon className="w-7 h-7 text-primary-foreground" />
-                  </div>
-                  <h3 className="font-display text-xl text-foreground mb-2">{v.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{v.text}</p>
+              <AnimatedSection key={v.title} delay={i * 0.12}>
+                <div className="lg:px-8 text-center lg:border-r border-border/15 last:border-r-0 h-full">
+                  <span className="inline-flex w-12 h-12 rounded-full border border-border/30 items-center justify-center mb-6 text-primary/80">
+                    <v.icon className="w-4 h-4" strokeWidth={1.25} />
+                  </span>
+                  <h3 className="font-display font-light text-xl text-foreground mb-3">{v.title}</h3>
+                  <p className="text-xs font-light text-muted-foreground leading-relaxed">{v.text}</p>
                 </div>
               </AnimatedSection>
             ))}
