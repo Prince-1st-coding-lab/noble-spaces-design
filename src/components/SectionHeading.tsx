@@ -5,13 +5,24 @@ interface Props {
   title: string;
   description?: string;
   light?: boolean;
+  align?: "center" | "left";
 }
 
-const SectionHeading = ({ label, title, description, light }: Props) => (
-  <AnimatedSection className="text-center mb-12">
-    {label && <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase mb-3 block">{label}</span>}
-    <h2 className={`font-display text-3xl md:text-4xl lg:text-5xl mb-4 ${light ? "text-foreground" : "text-foreground"}`}>{title}</h2>
-    {description && <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">{description}</p>}
+const SectionHeading = ({ label, title, description, align = "center" }: Props) => (
+  <AnimatedSection className={`mb-16 md:mb-20 ${align === "center" ? "text-center" : "text-left"}`}>
+    {label && (
+      <span className="text-primary/80 text-[11px] font-medium tracking-widest-2 uppercase mb-5 block">
+        — {label}
+      </span>
+    )}
+    <h2 className="font-display font-light text-3xl md:text-4xl lg:text-5xl text-foreground mb-5 leading-[1.15]">
+      {title}
+    </h2>
+    {description && (
+      <p className={`text-muted-foreground text-base leading-relaxed font-light ${align === "center" ? "max-w-xl mx-auto" : "max-w-xl"}`}>
+        {description}
+      </p>
+    )}
   </AnimatedSection>
 );
 
