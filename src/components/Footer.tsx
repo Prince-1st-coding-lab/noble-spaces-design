@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Facebook } from "lucide-react";
 import { services } from "@/data/services";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LocationMap from "@/components/LocationMap";
@@ -17,7 +17,15 @@ const Footer = () => {
               <h3 className="font-display text-2xl text-foreground">Noble Spaces</h3>
             </div>
             <p className="text-xs tracking-[0.2em] uppercase text-primary mb-4">{t("footer.tagline")}</p>
-            <p className="text-sm text-muted-foreground leading-relaxed">{t("footer.about")}</p>
+            <p className="text-sm text-muted-foreground leading-relaxed mb-4">{t("footer.about")}</p>
+            <div className="flex items-center gap-3">
+              <a href="https://www.instagram.com/noblespaces" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="https://www.facebook.com/noblespaces" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-primary hover:text-primary-foreground transition-colors">
+                <Facebook className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           <div>
